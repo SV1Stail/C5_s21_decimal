@@ -1,0 +1,56 @@
+#ifndef DEC_H
+#define DEC_H
+
+#include <limits.h>
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+  unsigned int bits[4];
+} s21_decimal;
+
+typedef struct {
+  unsigned long long int big_bits[8];
+} big_decimal;
+unsigned int change_on_1_small(s21_decimal struct_big_dec,
+                               int which_int_in_struct, int position);
+unsigned int change_on_0_small(s21_decimal struct_big_dec,
+                               int which_int_in_struct, int position);
+s21_decimal left_rotate_small(s21_decimal value, int pos);
+void printf_dits_s21_decimal(s21_decimal stru);
+void printf_dits_big_dec(big_decimal stru);
+s21_decimal check_for_minux_and_delete_it(s21_decimal tmp_struct,
+                                          unsigned int *flag_minus);
+unsigned long long int change_on_1(big_decimal struct_big_dec,
+                                   int which_int_in_struct, int position);
+unsigned long long int change_on_0(big_decimal struct_big_dec,
+                                   int which_int_in_struct, int position);
+big_decimal convert_s21_decimal_in_big_decimal(s21_decimal struct_dec);
+big_decimal revers_big_dec(big_decimal val);
+int kolvo_znachashih_cifr(big_decimal val);
+int normalization_scale_down(big_decimal value, unsigned int *scale,
+                             s21_decimal *s21_value);
+void scale_in_bits3(unsigned int scale, s21_decimal *result);
+
+big_decimal left_rotate(big_decimal value, int pos);
+
+big_decimal sum_binary(big_decimal val_1, big_decimal val_2);
+big_decimal proizv_binary(big_decimal val_1, big_decimal val_2);
+big_decimal minus_binary(big_decimal val_1, big_decimal val_2);
+big_decimal div_binary(big_decimal dividend, big_decimal divisor);
+
+int s21_is_less(s21_decimal value_1, s21_decimal value_2);              // <
+int s21_is_less_or_equal(s21_decimal value_1, s21_decimal value_2);     // <=
+int s21_is_greater(s21_decimal value_1, s21_decimal value_2);           // >
+int s21_is_greater_or_equal(s21_decimal value_1, s21_decimal value_2);  // >=
+int s21_is_equal(s21_decimal value_1, s21_decimal value_2);             // ==
+int s21_is_not_equal(s21_decimal value_1, s21_decimal value_2);         // !=
+
+int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+
+#endif
